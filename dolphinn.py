@@ -16,7 +16,7 @@ class Dolphinn:
                   self.cube[int(Y[i])]=[]
              self.cube[int(Y[i])].append(i)
 
-     def queries(self, Q, num_of_probes):
+     def queries(self, Q, M, num_of_probes):
         n=0
         flag=False
         combs=np.ones((num_of_probes,self.K))
@@ -42,14 +42,13 @@ class Dolphinn:
            for k in N:
               if self.cube.get(int(k))!= None:
                   cands.extend(self.cube[int(k)])             
-           if len(cands)>0:
-              mi=cands[0]
-              md=np.linalg.norm(np.subtract(self.P[0],Q[j]))
-              for i in cands:
-                if np.linalg.norm(np.subtract(self.P[i],Q[j]))<md:
-                    md=np.linalg.norm(np.subtract(self.P[i],Q[j]))
-                    mi=i
-              solQ.append(mi)       
+           if len(cands)>M:
+              args=np.argpartition([np.linalg.norm(np.subtract(self.P[i],Q[j])) for i in cands],M)
+              sols=[]
+              for i in range(M):
+                   sols.append(cands[args[i]])
+                   
+              solQ.append(sols)       
            else:
-              solQ.append(-1)
+              solQ.append([-1])
         return solQ
