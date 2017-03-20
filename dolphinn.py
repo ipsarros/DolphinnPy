@@ -46,8 +46,7 @@ class Dolphinn:
               args=np.argpartition([np.linalg.norm(np.subtract(self.P[i],Q[j])) for i in cands],M)
               sols=[]
               for i in range(M):
-                   sols.append(cands[args[i]])
-                   
+                   sols.append(cands[args[i]])    
               solQ.append(sols)       
            else:
               solQ.append([-1])
