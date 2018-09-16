@@ -10,26 +10,20 @@ First, N points are randomly mapped to keys in {0,1}^K, for K<=logN, by making u
 Files: 
 
 main.py: reads files, builds data structure, executes queries.
+dolphinn.py: data structure constructor, queries method.
+utils.py: various useful functions.
+bruteforce.py: linear scan for validation purposes.
 
-dolphinn.py: data structure constructor, queries method
-
-utils.py: various useful functions
-
-bruteforce.py: linear scan for validation purposes
 
 Hardcoded parameters (in main.py):
 
-K: new dimension - key bit length
-
-num_of_probes: how many buckets are allowed to visit
-
-M: how many candidate points are allowed to see
-
-Dataset-queryset files paths
+K: new dimension - key bit length.
+num_of_probes: how many buckets are allowed to visit.
+M: how many candidate points are allowed to see.
+Dataset-queryset files paths.
 
 
 How to run: 
-
 python dolphinn.py
 
 
