@@ -24,6 +24,6 @@ Dataset-queryset files paths.
 
 
 How to run: 
-python dolphinn.py
+python main.py
 
 
