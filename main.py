@@ -6,6 +6,8 @@ from dolphinn import *
 num_of_probes=20
 M=1
 #Preprocessing
+#D1: data dimension, P: dataset
+#D2: query dimension, Q: queryset
 (D1,P)=fr.fvecs_read("siftsmall/siftsmall_base.fvecs")
 (D2,Q)=fr.fvecs_read("siftsmall/siftsmall_query.fvecs")
 #(D1,P)=fr.fvecs_read("sift/sift_base.fvecs")
@@ -45,7 +47,6 @@ for i in range(len(solQ)):
        n=n+1
 
 print("Max approximation: ",mmax, ", Accuracy (exact NN): ",n/len(solQ))
-
 
 
 
