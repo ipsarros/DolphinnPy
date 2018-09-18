@@ -1,14 +1,14 @@
 #Ioannis Psarros
 #
-
 import time
 import utils as fr
 import numpy as np
 import bruteforce as bf
 from dolphinn import *
-num_of_probes=20
-M=1
-#Preprocessing
+num_of_probes=20   ###########################
+M=1   ##########################
+
+#READ FILES
 #D1: data dimension, P: dataset
 #D2: query dimension, Q: queryset
 (D1,P)=fr.fvecs_read("siftsmall/siftsmall_base.fvecs")
@@ -16,35 +16,36 @@ M=1
 if D1!=D2:
    raise IOError("Data points and query points are of different dimension")
 D=D1
-#
+
+#CHANGE OF ORIGIN
 #find the mean of randomly sampled points
 m=fr.findmean(P,D,10)
 #then consider this mean as the origin
 P=fr.isotropize(P,D,m)
 Q=fr.isotropize(Q,D,m)
-K=int(np.log2(len(P)))-2
+K=int(np.log2(len(P)))-2   ##########################
 print "New dimension K=",K
 
-#initialize hyperplane lsh
+#PREPROCESSING
 tic = time.clock()
 dol=Dolphinn(P, D, K)
 toc=time.clock()
 print "Preprocessing time: ",toc-tic
 
+#QUERIES
 tic= time.clock()     
-#Queries
 #assign keys to queries
 solQ=dol.queries(Q, M, num_of_probes)
 toc=time.clock()
 print "Average query time (Dolphinn): ",(toc-tic)/len(Q)    
     
-#bruteforce
+#BRUTEFORCE
 tic= time.clock()     
 solQQ=bf.bruteforce(P, Q)
 toc=time.clock()
 print "Average query time (Bruteforce): ",(toc-tic)/len(Q)  
 
-#compute accuracy: max ratio (found distance)/(NN distance), number of exact NNs found
+#COMPUTE ACCURACY: max ratio (found distance)/(NN distance), number of exact NNs found
 n=0
 mmax=0
 for i in range(len(solQ)):
