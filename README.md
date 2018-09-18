@@ -27,3 +27,12 @@ How to run: python main.py
 Preprocesses dataset, then runs Dolphinn and brute-force search on all queries.
 Prints K, preprocessing and average-query times.
 Prints multiplicative approximation, number of exact answers.
+
+
+Some tasks:
+
+1) Fix K, change num_of_probes and M: try to increase number of exact answers/decrease multiplicative approximation.
+
+2) Fix hange num_of_probes and M, change K: try to increase number of exact answers/decrease multiplicative approximation.
+
+3) After reading the files, the script calls an isotropize function for both sets. Run the script after commenting out these two lines. 
